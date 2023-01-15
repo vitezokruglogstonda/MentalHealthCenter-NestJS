@@ -9,4 +9,10 @@ export class AppController {
   getHello(): string {
     return this.appService.getHello();
   }
+
+  @Get("fillData")
+  async enterTestData(): Promise<string>{
+    await this.appService.fillDatabase();
+    return "Data entered successfuly";
+  }
 }
