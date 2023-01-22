@@ -8,11 +8,16 @@ import { REDIS } from './modules/redis/redis.constants';
 
 
 async function bootstrap() {
+  let bodyParser = require('body-parser');
+  //let path = require("path");
   const app = await NestFactory.create(AppModule);
-  const RedisStore = connectRedis(session);
+  //const RedisStore = connectRedis(session);
   app.enableCors({
-    origin: "http//localhost:4200"
+    credentials: true,
+    origin: "http://localhost:4200"
   })
+  app.use(bodyParser.json({limit: '50mb'}));
+  //app.useStaticAssets(path.join(__dirname, '../update'));
   // app.use(
   //   session({
   //     store: new RedisStore({ client: REDIS, logErrors: true }),

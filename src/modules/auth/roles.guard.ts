@@ -12,7 +12,7 @@ export class RoleGuard implements CanActivate{
             context.getClass()
         ]);
         const request = context.switchToHttp().getRequest();
-        if(requiredRole.includes(request.user.userType))
+        if(requiredRole.includes(request.user.userType)) //promeni u request.body..... pa kako ga vec prosledjujes (il ga nadji po userId-u pa nadji usera i njegov tip)
             return true;
         return false;
     }

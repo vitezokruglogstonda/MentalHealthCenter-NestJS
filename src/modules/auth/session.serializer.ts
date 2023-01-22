@@ -10,8 +10,8 @@ export class SessionSerializer extends PassportSerializer{
     }
     async serializeUser(user: User, done: (err: Error, user: any) => void) : Promise<any>{
         await this.userService.updateUser_Online(user.id);
-        return done(null, user); //dobija celog user-a (ovo uskladi sa pozivom na frontu, sta on dobija kad se loguje)
-        //return done(null, {id: user.id});
+        //return done(null, user); //ovo stavlja u redis
+        return done(null, {id: user.id});
     }
     async deserializeUser(payload: any, done: (err: Error, payload: any) => void) {
         //let user: User = await this.userService.getUserById(payload.id)

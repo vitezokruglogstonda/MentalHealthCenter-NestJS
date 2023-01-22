@@ -21,12 +21,21 @@ import * as RedisStore from 'connect-redis';
 import * as session from 'express-session';
 import * as passport from 'passport';
 import { RedisClient } from 'redis';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 // import { REDIS, RedisModule } from './redis';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(typeOrmConfig),
     TypeOrmModule.forFeature([User, BirthDate, Schedule, Note, Description, Quote, Page, HelpCall]),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, "..", '../assets/Images/ProfilePictures'),
+			serveStaticOptions: {
+				redirect: false,
+				index: false
+			}
+    }),
     UserModule,
     AuthModule,
     RedisModule,

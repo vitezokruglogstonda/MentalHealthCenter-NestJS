@@ -10,9 +10,16 @@ import { Quote } from './entities/quotes.entity';
 import { Schedule } from './entities/schedule.entity';
 import { User } from './entities/user.entity';
 import { UserType } from './enums/user-type.enum';
+import { compare, hash } from 'bcrypt';
+import { environment } from './environments/environment';
+import { QuoteDto } from './models/quote.model';
 
 @Injectable()
 export class AppService {
+  
+  public bcrypt;
+  public saltRounds: number;
+
   constructor(
     @InjectRepository(User) private userRepo: Repository<User>,
     @InjectRepository(BirthDate) private birthDateRepo: Repository<BirthDate>,
@@ -22,14 +29,20 @@ export class AppService {
     @InjectRepository(Quote) private quoteRepo: Repository<Quote>,
     @InjectRepository(Page) private pageRepo: Repository<Page>,
     @InjectRepository(HelpCall) private helpCallRepo: Repository<HelpCall>,
-  ){
-
+  ) {
+    this.bcrypt = require('bcrypt');
+    this.saltRounds = environment.salt_rounds;
   }
   getHello(): string {
     return 'Hello World!';
   }
 
-  async fillDatabase(){
+  async fillDatabase() {
+    let original_password: string;
+    let hashed_password: string;
+
+    original_password = "admin";
+    hashed_password = await this.bcrypt.hash(original_password, this.saltRounds);
 
     //users
     const admin: User = this.userRepo.create({
@@ -39,9 +52,9 @@ export class AppService {
       lastName: "",
       gender: "Male",
       phoneNumber: "0948513545",
-      password: "admin",
+      password: hashed_password,
       userType: UserType.Admin,
-      profilePicturePath: "/assets/Images/ProfilePictures/account_icon.png"
+      profilePicturePath: "./assets/Images/ProfilePictures/account_icon.png"
     });
     await this.userRepo.save(admin);
 
@@ -53,6 +66,9 @@ export class AppService {
     });
     await this.birthDateRepo.save(adminBirthDate);
 
+    original_password = "123";
+    hashed_password = await this.bcrypt.hash(original_password, this.saltRounds);
+
     const callOperator: User = this.userRepo.create({
       email: "tarmi@ricmi.rs",
       online: false,
@@ -60,12 +76,12 @@ export class AppService {
       lastName: "Ricmi",
       gender: "Male",
       phoneNumber: "0948513545",
-      password: "123",
+      password: hashed_password,
       userType: UserType.CallOperator,
       profilePicturePath: "/assets/UserData/user1.png"
     });
     await this.userRepo.save(callOperator);
-    
+
     const operatorBirthDate: BirthDate = this.birthDateRepo.create({
       year: 2012,
       month: 6,
@@ -74,6 +90,9 @@ export class AppService {
     });
     await this.birthDateRepo.save(operatorBirthDate);
 
+    original_password = "budala";
+    hashed_password = await this.bcrypt.hash(original_password, this.saltRounds);
+
     const therapist1: User = this.userRepo.create({
       email: "rajko@r.com",
       online: false,
@@ -81,12 +100,12 @@ export class AppService {
       lastName: "Specko",
       gender: "Female",
       phoneNumber: "2132131241",
-      password: "budala",
+      password: hashed_password,
       userType: UserType.Therapist,
       profilePicturePath: "/assets/UserData/user1.png"
     });
     await this.userRepo.save(therapist1);
-    
+
     const therapist1_BirthDate: BirthDate = this.birthDateRepo.create({
       year: 2022,
       month: 10,
@@ -101,6 +120,9 @@ export class AppService {
     });
     await this.descriptionRepo.save(therapist1_Description);
 
+    original_password = "123";
+    hashed_password = await this.bcrypt.hash(original_password, this.saltRounds);
+
     const patient1: User = this.userRepo.create({
       email: "nesto@nesto.rs",
       online: false,
@@ -108,13 +130,13 @@ export class AppService {
       lastName: "Antic",
       gender: "Male",
       phoneNumber: "0948513545",
-      password: "123",
+      password: hashed_password,
       userType: UserType.Patient,
       profilePicturePath: "/assets/UserData/user1.png",
       therapist: therapist1
     });
     await this.userRepo.save(patient1);
-    
+
     const patient1_BirthDate: BirthDate = this.birthDateRepo.create({
       year: 2012,
       month: 6,
@@ -129,6 +151,9 @@ export class AppService {
     });
     await this.noteRepo.save(patient1_Note);
 
+    original_password = "a";
+    hashed_password = await this.bcrypt.hash(original_password, this.saltRounds);
+
     const patient2: User = this.userRepo.create({
       email: "a",
       online: false,
@@ -136,13 +161,13 @@ export class AppService {
       lastName: "Anticevic",
       gender: "Male",
       phoneNumber: "0948513545",
-      password: "a",
+      password: hashed_password,
       userType: UserType.Patient,
       profilePicturePath: "/assets/UserData/user1.png",
       therapist: therapist1
     });
     await this.userRepo.save(patient2);
-    
+
     const patient2_BirthDate: BirthDate = this.birthDateRepo.create({
       year: 1389,
       month: 6,
@@ -157,6 +182,9 @@ export class AppService {
     });
     await this.noteRepo.save(patient2_Note);
 
+    original_password = "ccc";
+    hashed_password = await this.bcrypt.hash(original_password, this.saltRounds);
+
     const patient3: User = this.userRepo.create({
       email: "andrija@gmail.com",
       online: false,
@@ -164,13 +192,13 @@ export class AppService {
       lastName: "Djordjevic",
       gender: "Male",
       phoneNumber: "0948513545",
-      password: "ccc",
+      password: hashed_password,
       userType: UserType.Patient,
       profilePicturePath: "/assets/UserData/user1.png",
       therapist: therapist1
     });
     await this.userRepo.save(patient3);
-    
+
     const patient3_BirthDate: BirthDate = this.birthDateRepo.create({
       year: 1389,
       month: 6,
@@ -185,6 +213,9 @@ export class AppService {
     });
     await this.noteRepo.save(patient3_Note);
 
+    original_password = "sadsad";
+    hashed_password = await this.bcrypt.hash(original_password, this.saltRounds);
+
     const patient4: User = this.userRepo.create({
       email: "majko@gmail.com",
       online: false,
@@ -192,13 +223,13 @@ export class AppService {
       lastName: "Broz",
       gender: "Male",
       phoneNumber: "3142342342",
-      password: "sadsad",
+      password: hashed_password,
       userType: UserType.Patient,
       profilePicturePath: "/assets/Icons/account_icon.png",
       therapist: null
     });
     await this.userRepo.save(patient4);
-    
+
     const patient4_BirthDate: BirthDate = this.birthDateRepo.create({
       year: 2004,
       month: 10,
@@ -213,6 +244,9 @@ export class AppService {
     });
     await this.noteRepo.save(patient4_Note);
 
+    original_password = "budala";
+    hashed_password = await this.bcrypt.hash(original_password, this.saltRounds);
+
     const therapist2: User = this.userRepo.create({
       email: "b@b.com",
       online: false,
@@ -220,12 +254,12 @@ export class AppService {
       lastName: "Kompletna",
       gender: "Male",
       phoneNumber: "2132131241",
-      password: "budala",
+      password: hashed_password,
       userType: UserType.Therapist,
       profilePicturePath: "/assets/UserData/user1.png"
     });
     await this.userRepo.save(therapist2);
-    
+
     const therapist2_BirthDate: BirthDate = this.birthDateRepo.create({
       year: 2022,
       month: 10,
@@ -240,6 +274,9 @@ export class AppService {
     });
     await this.descriptionRepo.save(therapist2_Description);
 
+    original_password = "budala";
+    hashed_password = await this.bcrypt.hash(original_password, this.saltRounds);
+
     const therapist3: User = this.userRepo.create({
       email: "c@c.com",
       online: false,
@@ -247,12 +284,12 @@ export class AppService {
       lastName: "Kompletna",
       gender: "Male",
       phoneNumber: "2132131241",
-      password: "budala",
+      password: hashed_password,
       userType: UserType.Therapist,
       profilePicturePath: "/assets/UserData/user1.png"
     });
     await this.userRepo.save(therapist3);
-    
+
     const therapist3_BirthDate: BirthDate = this.birthDateRepo.create({
       year: 2022,
       month: 10,
@@ -267,6 +304,9 @@ export class AppService {
     });
     await this.descriptionRepo.save(therapist3_Description);
 
+    original_password = "budala";
+    hashed_password = await this.bcrypt.hash(original_password, this.saltRounds);
+
     const therapist4: User = this.userRepo.create({
       email: "d@d.com",
       online: false,
@@ -274,12 +314,12 @@ export class AppService {
       lastName: "Slepac",
       gender: "Female",
       phoneNumber: "2132131241",
-      password: "budala",
+      password: hashed_password,
       userType: UserType.Therapist,
       profilePicturePath: "/assets/UserData/user1.png"
     });
     await this.userRepo.save(therapist4);
-    
+
     const therapist4_BirthDate: BirthDate = this.birthDateRepo.create({
       year: 2022,
       month: 10,
@@ -374,7 +414,7 @@ export class AppService {
       processed: false
     });
     await this.helpCallRepo.save(helpCall1);
-    
+
     const helpCall2: HelpCall = this.helpCallRepo.create({
       guestName: "Lik2",
       guestPhoneNumber: "5555555555",
@@ -480,6 +520,25 @@ export class AppService {
     });
     await this.pageRepo.save(page6);
 
+  }
+
+  async getPages() : Promise<Page[]>{
+    return await this.pageRepo.createQueryBuilder("page").getMany();
+  }
+
+  async getQuotes(): Promise<QuoteDto[]>{
+    let result: QuoteDto[] = [];
+    let quotes: Quote[] = await this.quoteRepo.createQueryBuilder("quote")
+      .leftJoinAndSelect("quote.patient", "patient")
+      .getMany();
+    quotes.forEach(quote => {
+      result.push({
+        userName: `${quote.patient.firstName} ${quote.patient.lastName}`,
+        quoteText: quote.quoteText,
+        profilePicture: environment.server_own_url+quote.patient.profilePicturePath
+      });
+    })
+    return result;
   }
 
 }
