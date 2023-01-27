@@ -545,8 +545,9 @@ export class AppService {
   async requestHelpCall(request: HelpCallDto): Promise<boolean>{
     let hcRequest: HelpCall = await this.helpCallRepo.createQueryBuilder("help_call")
       .where("help_call.guestPhoneNumber = :phone", { phone: request.guestPhoneNumber })
+      .andWhere("help_call.processed = :status", { status: false })
       .getOne();
-    if(hcRequest && !hcRequest.processed){
+    if(hcRequest){
       return false;
     }else{
       let newHelpCall: HelpCall = this.helpCallRepo.create({

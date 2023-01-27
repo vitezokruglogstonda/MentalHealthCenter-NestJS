@@ -76,11 +76,11 @@ export class UserController {
     }
 
 
-    // @UseGuards(AuthenticatedGuard)
-    // @UseGuards(RoleGuard)
-    // @Roles(UserType.Therapist, UserType.Patient)
-    // @Get("random")
-    // random(): string{
-    //     return "eo me";
-    // }
+    @UseGuards(AuthenticatedGuard)
+    @UseGuards(RoleGuard)
+    @Roles(UserType.Therapist, UserType.Patient)
+    @Get("random")
+    random(): string{
+        return "eo me";
+    }
 }
