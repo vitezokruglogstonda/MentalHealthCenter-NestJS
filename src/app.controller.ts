@@ -1,6 +1,7 @@
-import { Controller, Get, Session } from '@nestjs/common';
+import { Body, Controller, Get, Post, Session } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Page } from './entities/page.entity';
+import { HelpCallDto } from './models/help-call.model';
 import { QuoteDto } from './models/quote.model';
 
 @Controller()
@@ -26,5 +27,10 @@ export class AppController {
   @Get("user-quotes")
   async getQuotes(): Promise<QuoteDto[]>{
     return await this.appService.getQuotes();
+  }
+
+  @Post("help-call-request")
+  async requestHelpCall(@Body() request: HelpCallDto): Promise<boolean>{
+    return await this.appService.requestHelpCall(request);
   }
 }

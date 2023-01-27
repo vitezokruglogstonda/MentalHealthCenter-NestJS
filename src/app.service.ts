@@ -13,6 +13,7 @@ import { UserType } from './enums/user-type.enum';
 import { compare, hash } from 'bcrypt';
 import { environment } from './environments/environment';
 import { QuoteDto } from './models/quote.model';
+import { HelpCallDto } from './models/help-call.model';
 
 @Injectable()
 export class AppService {
@@ -539,6 +540,23 @@ export class AppService {
       });
     })
     return result;
+  }
+
+  async requestHelpCall(request: HelpCallDto): Promise<boolean>{
+    let hcRequest: HelpCall = await this.helpCallRepo.createQueryBuilder("help_call")
+      .where("help_call.guestPhoneNumber = :phone", { phone: request.guestPhoneNumber })
+      .getOne();
+    if(hcRequest && !hcRequest.processed){
+      return false;
+    }else{
+      let newHelpCall: HelpCall = this.helpCallRepo.create({
+        guestName: request.guestName,
+        guestPhoneNumber: request.guestPhoneNumber,
+        processed: false
+      });
+      await this.helpCallRepo.save(newHelpCall);
+      return true;
+    }
   }
 
 }
