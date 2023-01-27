@@ -59,6 +59,7 @@ export class UserController {
     }
 
     @Post("upload-profile-picture/:id")
+    //@HttpCode(200)
     @UseInterceptors(FileInterceptor('file', {
         storage: diskStorage({
             destination: environment.profile_pictures_path,
@@ -69,9 +70,9 @@ export class UserController {
             }
         })}
     ))
-    async uploadProfilePicture(@Param("id", ParseIntPipe) id: number, @UploadedFile() profilePicture: Express.Multer.File): Promise<string>{
+    async uploadProfilePicture(@Param("id", ParseIntPipe) id: number, @UploadedFile() profilePicture: Express.Multer.File): Promise<{path: string}>{
         await this.userService.updateProfilePicture(id, profilePicture.filename);
-        return profilePicture.filename;
+        return {path: profilePicture.filename};
     }
 
 

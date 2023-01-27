@@ -535,7 +535,7 @@ export class AppService {
       result.push({
         userName: `${quote.patient.firstName} ${quote.patient.lastName}`,
         quoteText: quote.quoteText,
-        profilePicture: environment.server_own_url+quote.patient.profilePicturePath
+        profilePicture: environment.server_own_url + environment.user_path_to_profile_picture + quote.patient.profilePicturePath
       });
     })
     return result;

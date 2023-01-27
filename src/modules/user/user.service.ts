@@ -73,7 +73,7 @@ export class UserService {
             gender: fetchedUser.gender,
             userType: fetchedUser.userType,
             phoneNumber: fetchedUser.phoneNumber,
-            profilePicturePath: fetchedUser.profilePicturePath,
+            profilePicturePath: environment.server_own_url + environment.user_path_to_profile_picture + fetchedUser.profilePicturePath,
             therapistID: fetchedUser.therapist ? fetchedUser.therapist.id : null,
             note: fetchedUser.note ? fetchedUser.note.noteText : null,
             description: fetchedUser.description ? fetchedUser.description.descriptionText : null

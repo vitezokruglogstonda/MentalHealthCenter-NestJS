@@ -29,13 +29,14 @@ import { join } from 'path';
   imports: [
     TypeOrmModule.forRoot(typeOrmConfig),
     TypeOrmModule.forFeature([User, BirthDate, Schedule, Note, Description, Quote, Page, HelpCall]),
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, "..", '../assets/Images/ProfilePictures'),
-			serveStaticOptions: {
-				redirect: false,
-				index: false
-			}
-    }),
+    // ServeStaticModule.forRoot({
+    //   //rootPath: join(__dirname, "..", '../assets/Images/ProfilePictures'),
+    //   rootPath: join(__dirname, "..", '../'),
+		// 	serveStaticOptions: {
+		// 		redirect: false,
+		// 		index: false
+		// 	}
+    // }),
     UserModule,
     AuthModule,
     RedisModule,
