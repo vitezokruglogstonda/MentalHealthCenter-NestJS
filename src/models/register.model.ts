@@ -8,5 +8,4 @@ export interface RegisterDto {
     birthDate: CustomDate | null;
     gender: String;
     phoneNumber: String;
-    //profilePicture: File | null;
 }

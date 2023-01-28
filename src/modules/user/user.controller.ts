@@ -72,15 +72,6 @@ export class UserController {
     ))
     async uploadProfilePicture(@Param("id", ParseIntPipe) id: number, @UploadedFile() profilePicture: Express.Multer.File): Promise<{path: string}>{
         await this.userService.updateProfilePicture(id, profilePicture.filename);
-        return {path: profilePicture.filename};
-    }
-
-
-    @UseGuards(AuthenticatedGuard)
-    @UseGuards(RoleGuard)
-    @Roles(UserType.Therapist, UserType.Patient)
-    @Get("random")
-    random(): string{
-        return "eo me";
+        return {path: environment.server_own_url + environment.user_path_to_profile_picture + profilePicture.filename};
     }
 }

@@ -122,7 +122,7 @@ export class PatientService {
         if(!appointment && appointment.patient.id !== patientId){
             return false;
         }else{
-            this.scheduleRepo.delete(appointmentId);
+            await this.scheduleRepo.delete(appointmentId);
             return true;
         }
     }

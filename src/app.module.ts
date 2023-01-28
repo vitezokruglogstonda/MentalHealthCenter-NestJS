@@ -26,6 +26,7 @@ import { join } from 'path';
 // import { REDIS, RedisModule } from './redis';
 import { TherapistModule } from './modules/therapist/therapist.module';
 import { PatientModule } from './modules/patient/patient.module';
+import { AdminModule } from './modules/admin/admin.module';
 
 @Module({
   imports: [
@@ -44,6 +45,7 @@ import { PatientModule } from './modules/patient/patient.module';
     RedisModule,
     TherapistModule,
     PatientModule,
+    AdminModule,
   ],
   controllers: [AppController],
   providers: [AppService],
