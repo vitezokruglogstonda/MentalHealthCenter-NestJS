@@ -4,7 +4,7 @@ import { Note } from 'src/entities/note.entity';
 import { Schedule } from 'src/entities/schedule.entity';
 import { User } from 'src/entities/user.entity';
 import { environment } from 'src/environments/environment';
-import { AppointmentDto } from 'src/models/appointment.model';
+import { TherapistAppointmentDto } from 'src/models/appointment.model';
 import { PatientDto } from 'src/models/patient.model';
 import { Repository } from 'typeorm';
 
@@ -48,8 +48,8 @@ export class TherapistService {
         return return_list;
     }
 
-    async getSchedule(id: number): Promise<AppointmentDto[]> {
-        let return_list: AppointmentDto[] = [];
+    async getSchedule(id: number): Promise<TherapistAppointmentDto[]> {
+        let return_list: TherapistAppointmentDto[] = [];
 
         let schedule: Schedule[] = await this.scheduleRepo.createQueryBuilder("schedule")
             .leftJoinAndSelect("schedule.patient", "patient")
@@ -58,7 +58,7 @@ export class TherapistService {
             .getMany();
 
         schedule.forEach(appointment => {
-            let appointmentDto: AppointmentDto = {
+            let appointmentDto: TherapistAppointmentDto = {
                 id: appointment.id,
                 therapistID: appointment.therapist.id,
                 date: appointment.date,

@@ -25,6 +25,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 // import { REDIS, RedisModule } from './redis';
 import { TherapistModule } from './modules/therapist/therapist.module';
+import { PatientModule } from './modules/patient/patient.module';
 
 @Module({
   imports: [
@@ -42,6 +43,7 @@ import { TherapistModule } from './modules/therapist/therapist.module';
     AuthModule,
     RedisModule,
     TherapistModule,
+    PatientModule,
   ],
   controllers: [AppController],
   providers: [AppService],
