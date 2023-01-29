@@ -27,6 +27,7 @@ import { join } from 'path';
 import { TherapistModule } from './modules/therapist/therapist.module';
 import { PatientModule } from './modules/patient/patient.module';
 import { AdminModule } from './modules/admin/admin.module';
+import { OperatorModule } from './modules/operator/operator.module';
 
 @Module({
   imports: [
@@ -46,6 +47,7 @@ import { AdminModule } from './modules/admin/admin.module';
     TherapistModule,
     PatientModule,
     AdminModule,
+    OperatorModule,
   ],
   controllers: [AppController],
   providers: [AppService],
