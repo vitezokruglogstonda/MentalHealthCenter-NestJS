@@ -50,7 +50,7 @@ import { OperatorModule } from './modules/operator/operator.module';
     OperatorModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService]
 })
 export class AppModule implements NestModule {
   //const pubClient: = createClient({ url: `redis://<path to redis>:6379` });

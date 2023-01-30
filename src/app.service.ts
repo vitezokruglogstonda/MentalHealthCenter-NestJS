@@ -542,22 +542,4 @@ export class AppService {
     return result;
   }
 
-  async requestHelpCall(request: HelpCallDto): Promise<boolean>{
-    let hcRequest: HelpCall = await this.helpCallRepo.createQueryBuilder("help_call")
-      .where("help_call.guestPhoneNumber = :phone", { phone: request.guestPhoneNumber })
-      .andWhere("help_call.processed = :status", { status: false })
-      .getOne();
-    if(hcRequest){
-      return false;
-    }else{
-      let newHelpCall: HelpCall = this.helpCallRepo.create({
-        guestName: request.guestName,
-        guestPhoneNumber: request.guestPhoneNumber,
-        processed: false
-      });
-      await this.helpCallRepo.save(newHelpCall);
-      return true;
-    }
-  }
-
 }

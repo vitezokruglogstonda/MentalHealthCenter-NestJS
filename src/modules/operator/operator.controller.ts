@@ -1,4 +1,5 @@
-import { Body, Controller, Get, Put, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Inject, Put, UseGuards } from '@nestjs/common';
+import { AppService } from 'src/app.service';
 import { HelpCall } from 'src/entities/help-call.entity';
 import { UserType } from 'src/enums/user-type.enum';
 import { HelpCallDto } from 'src/models/help-call.model';
@@ -23,7 +24,7 @@ export class OperatorController {
     @UseGuards(RoleGuard)
     @Roles(UserType.CallOperator)
     @Put("done")
-    async callDone(@Body() call: {id: number}): Promise<boolean>{
+    async callDone(@Body() call: {id: number}): Promise<number>{
         return await this.operatorService.callDone(call.id);
     }
 }
