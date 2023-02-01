@@ -22,7 +22,7 @@ export class UserService {
         @InjectRepository(User) private userRepo: Repository<User>,
         @InjectRepository(BirthDate) private birthDateRepo: Repository<BirthDate>,
     ) {
-        this.bcrypt = require('bcrypt');
+        this.bcrypt = require('bcryptjs');
         this.saltRounds = environment.salt_rounds;
     }
 

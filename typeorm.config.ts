@@ -10,7 +10,7 @@ import { ConnectionOptions } from "typeorm";
 
 export const typeOrmConfig: ConnectionOptions = {
     type: "postgres",
-    host: "localhost",
+    host: "postgres", //localhost
     port: 5432,
     username: "postgres",
     password: "mysecretpassword",

@@ -19,7 +19,7 @@ export class AdminService {
         @InjectRepository(BirthDate) private birthDateRepo: Repository<BirthDate>,
         @InjectRepository(Description) private descriptionRepo: Repository<Description>,
     ) { 
-        this.bcrypt = require('bcrypt');
+        this.bcrypt = require('bcryptjs');
         this.saltRounds = environment.salt_rounds;
     }
 

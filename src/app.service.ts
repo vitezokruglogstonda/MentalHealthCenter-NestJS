@@ -10,7 +10,7 @@ import { Quote } from './entities/quotes.entity';
 import { Schedule } from './entities/schedule.entity';
 import { User } from './entities/user.entity';
 import { UserType } from './enums/user-type.enum';
-import { compare, hash } from 'bcrypt';
+import { compare, hash } from 'bcryptjs';
 import { environment } from './environments/environment';
 import { QuoteDto } from './models/quote.model';
 import { HelpCallDto } from './models/help-call.model';
@@ -31,7 +31,7 @@ export class AppService {
     @InjectRepository(Page) private pageRepo: Repository<Page>,
     @InjectRepository(HelpCall) private helpCallRepo: Repository<HelpCall>,
   ) {
-    this.bcrypt = require('bcrypt');
+    this.bcrypt = require('bcryptjs');
     this.saltRounds = environment.salt_rounds;
   }
   getHello(): string {
