@@ -55,7 +55,7 @@ export class AppService {
       phoneNumber: "0948513545",
       password: hashed_password,
       userType: UserType.Admin,
-      profilePicturePath: "./assets/Images/ProfilePictures/account_icon.png"
+      profilePicturePath: "account_icon.png"
     });
     await this.userRepo.save(admin);
 
@@ -67,50 +67,50 @@ export class AppService {
     });
     await this.birthDateRepo.save(adminBirthDate);
 
-    original_password = "123";
+    original_password = "oliver";
     hashed_password = await this.bcrypt.hash(original_password, this.saltRounds);
 
     const callOperator: User = this.userRepo.create({
-      email: "tarmi@ricmi.rs",
+      email: "oliver@google.com",
       online: false,
-      firstName: "Tarmi",
-      lastName: "Ricmi",
+      firstName: "Oliver",
+      lastName: "Brown",
       gender: "Male",
       phoneNumber: "0948513545",
       password: hashed_password,
       userType: UserType.CallOperator,
-      profilePicturePath: "/assets/UserData/user1.png"
+      profilePicturePath: "oliver.jpg"
     });
     await this.userRepo.save(callOperator);
 
     const operatorBirthDate: BirthDate = this.birthDateRepo.create({
-      year: 2012,
+      year: 2001,
       month: 6,
       day: 28,
       user: callOperator
     });
     await this.birthDateRepo.save(operatorBirthDate);
 
-    original_password = "budala";
+    original_password = "peterson";
     hashed_password = await this.bcrypt.hash(original_password, this.saltRounds);
 
     const therapist1: User = this.userRepo.create({
-      email: "rajko@r.com",
+      email: "peterson@gmail.com",
       online: false,
-      firstName: "Rajko",
-      lastName: "Specko",
-      gender: "Female",
+      firstName: "Jordan",
+      lastName: "Peterson",
+      gender: "Male",
       phoneNumber: "2132131241",
       password: hashed_password,
       userType: UserType.Therapist,
-      profilePicturePath: "/assets/UserData/user1.png"
+      profilePicturePath: "jordan_peterson.jpg"
     });
     await this.userRepo.save(therapist1);
 
     const therapist1_BirthDate: BirthDate = this.birthDateRepo.create({
-      year: 2022,
-      month: 10,
-      day: 13,
+      year: 1962,
+      month: 6,
+      day: 12,
       user: therapist1
     });
     await this.birthDateRepo.save(therapist1_BirthDate);
@@ -121,25 +121,25 @@ export class AppService {
     });
     await this.descriptionRepo.save(therapist1_Description);
 
-    original_password = "123";
+    original_password = "theodore";
     hashed_password = await this.bcrypt.hash(original_password, this.saltRounds);
 
     const patient1: User = this.userRepo.create({
-      email: "nesto@nesto.rs",
+      email: "theodore@google.com",
       online: false,
-      firstName: "Mandrila",
-      lastName: "Antic",
+      firstName: "Theodore",
+      lastName: "Williams",
       gender: "Male",
       phoneNumber: "0948513545",
       password: hashed_password,
       userType: UserType.Patient,
-      profilePicturePath: "/assets/UserData/user1.png",
+      profilePicturePath: "theodore.jpg",
       therapist: therapist1
     });
     await this.userRepo.save(patient1);
 
     const patient1_BirthDate: BirthDate = this.birthDateRepo.create({
-      year: 2012,
+      year: 1982,
       month: 6,
       day: 28,
       user: patient1
@@ -158,21 +158,21 @@ export class AppService {
     const patient2: User = this.userRepo.create({
       email: "a",
       online: false,
-      firstName: "Mandrilica",
-      lastName: "Anticevic",
+      firstName: "Lucas",
+      lastName: "Turner",
       gender: "Male",
       phoneNumber: "0948513545",
       password: hashed_password,
       userType: UserType.Patient,
-      profilePicturePath: "/assets/UserData/user1.png",
+      profilePicturePath: "lucas.png",
       therapist: therapist1
     });
     await this.userRepo.save(patient2);
 
     const patient2_BirthDate: BirthDate = this.birthDateRepo.create({
-      year: 1389,
-      month: 6,
-      day: 28,
+      year: 1973,
+      month: 10,
+      day: 4,
       user: patient2
     });
     await this.birthDateRepo.save(patient2_BirthDate);
@@ -183,27 +183,27 @@ export class AppService {
     });
     await this.noteRepo.save(patient2_Note);
 
-    original_password = "ccc";
+    original_password = "sophia";
     hashed_password = await this.bcrypt.hash(original_password, this.saltRounds);
 
     const patient3: User = this.userRepo.create({
-      email: "andrija@gmail.com",
+      email: "sophia@gmail.com",
       online: false,
-      firstName: "Andrija",
-      lastName: "Djordjevic",
-      gender: "Male",
+      firstName: "Sophia",
+      lastName: "Rogers",
+      gender: "Female",
       phoneNumber: "0948513545",
       password: hashed_password,
       userType: UserType.Patient,
-      profilePicturePath: "/assets/UserData/user1.png",
+      profilePicturePath: "sophia.png",
       therapist: therapist1
     });
     await this.userRepo.save(patient3);
 
     const patient3_BirthDate: BirthDate = this.birthDateRepo.create({
-      year: 1389,
-      month: 6,
-      day: 28,
+      year: 1998,
+      month: 2,
+      day: 15,
       user: patient3
     });
     await this.birthDateRepo.save(patient3_BirthDate);
@@ -214,26 +214,26 @@ export class AppService {
     });
     await this.noteRepo.save(patient3_Note);
 
-    original_password = "sadsad";
+    original_password = "matt";
     hashed_password = await this.bcrypt.hash(original_password, this.saltRounds);
 
     const patient4: User = this.userRepo.create({
-      email: "majko@gmail.com",
+      email: "matt@gmail.com",
       online: false,
-      firstName: "Josip",
-      lastName: "Broz",
+      firstName: "Matt",
+      lastName: "Stone",
       gender: "Male",
       phoneNumber: "3142342342",
       password: hashed_password,
       userType: UserType.Patient,
-      profilePicturePath: "/assets/Icons/account_icon.png",
+      profilePicturePath: "matt.png",
       therapist: null
     });
     await this.userRepo.save(patient4);
 
     const patient4_BirthDate: BirthDate = this.birthDateRepo.create({
-      year: 2004,
-      month: 10,
+      year: 1994,
+      month: 5,
       day: 19,
       user: patient4
     });
@@ -245,25 +245,25 @@ export class AppService {
     });
     await this.noteRepo.save(patient4_Note);
 
-    original_password = "budala";
+    original_password = "emma";
     hashed_password = await this.bcrypt.hash(original_password, this.saltRounds);
 
     const therapist2: User = this.userRepo.create({
-      email: "b@b.com",
+      email: "emma@gmail.com",
       online: false,
-      firstName: "Budaletina",
-      lastName: "Kompletna",
-      gender: "Male",
+      firstName: "Emma",
+      lastName: "Davis",
+      gender: "Female",
       phoneNumber: "2132131241",
       password: hashed_password,
       userType: UserType.Therapist,
-      profilePicturePath: "/assets/UserData/user1.png"
+      profilePicturePath: "emma.jpg"
     });
     await this.userRepo.save(therapist2);
 
     const therapist2_BirthDate: BirthDate = this.birthDateRepo.create({
-      year: 2022,
-      month: 10,
+      year: 1989,
+      month: 4,
       day: 13,
       user: therapist2
     });
@@ -275,26 +275,26 @@ export class AppService {
     });
     await this.descriptionRepo.save(therapist2_Description);
 
-    original_password = "budala";
+    original_password = "henry";
     hashed_password = await this.bcrypt.hash(original_password, this.saltRounds);
 
     const therapist3: User = this.userRepo.create({
-      email: "c@c.com",
+      email: "henry@gmail.com",
       online: false,
-      firstName: "Budaletina",
-      lastName: "Kompletna",
+      firstName: "Henry",
+      lastName: "Gray",
       gender: "Male",
       phoneNumber: "2132131241",
       password: hashed_password,
       userType: UserType.Therapist,
-      profilePicturePath: "/assets/UserData/user1.png"
+      profilePicturePath: "henry.png"
     });
     await this.userRepo.save(therapist3);
 
     const therapist3_BirthDate: BirthDate = this.birthDateRepo.create({
-      year: 2022,
-      month: 10,
-      day: 13,
+      year: 1991,
+      month: 2,
+      day: 24,
       user: therapist3
     });
     await this.birthDateRepo.save(therapist3_BirthDate);
@@ -305,26 +305,26 @@ export class AppService {
     });
     await this.descriptionRepo.save(therapist3_Description);
 
-    original_password = "budala";
+    original_password = "isabella";
     hashed_password = await this.bcrypt.hash(original_password, this.saltRounds);
 
     const therapist4: User = this.userRepo.create({
-      email: "d@d.com",
+      email: "isabella@gmail.com",
       online: false,
-      firstName: "Cisti",
-      lastName: "Slepac",
+      firstName: "Isabella",
+      lastName: "Foster",
       gender: "Female",
       phoneNumber: "2132131241",
       password: hashed_password,
       userType: UserType.Therapist,
-      profilePicturePath: "/assets/UserData/user1.png"
+      profilePicturePath: "isabella.jpg"
     });
     await this.userRepo.save(therapist4);
 
     const therapist4_BirthDate: BirthDate = this.birthDateRepo.create({
-      year: 2022,
-      month: 10,
-      day: 13,
+      year: 1985,
+      month: 9,
+      day: 3,
       user: therapist4
     });
     await this.birthDateRepo.save(therapist4_BirthDate);
@@ -335,9 +335,33 @@ export class AppService {
     });
     await this.descriptionRepo.save(therapist4_Description);
 
+    original_password = "mia";
+    hashed_password = await this.bcrypt.hash(original_password, this.saltRounds);
+
+    const callOperator2: User = this.userRepo.create({
+      email: "mia@google.com",
+      online: false,
+      firstName: "Mia",
+      lastName: "Reed",
+      gender: "Male",
+      phoneNumber: "0948513545",
+      password: hashed_password,
+      userType: UserType.CallOperator,
+      profilePicturePath: "mia.png"
+    });
+    await this.userRepo.save(callOperator2);
+
+    const operator2BirthDate: BirthDate = this.birthDateRepo.create({
+      year: 1999,
+      month: 7,
+      day: 16,
+      user: callOperator2
+    });
+    await this.birthDateRepo.save(operator2BirthDate);
+
     //schedules
     const schedule1: Schedule = this.scheduleRepo.create({
-      date: "16.1.2023.",
+      date: "1.2.2023.",
       appointmentNumber: 0,
       patient: patient1,
       therapist: therapist1,
@@ -345,7 +369,7 @@ export class AppService {
     await this.scheduleRepo.save(schedule1);
 
     const schedule2: Schedule = this.scheduleRepo.create({
-      date: "16.1.2023.",
+      date: "1.2.2023.",
       appointmentNumber: 1,
       patient: patient2,
       therapist: therapist1,
@@ -353,7 +377,7 @@ export class AppService {
     await this.scheduleRepo.save(schedule2);
 
     const schedule3: Schedule = this.scheduleRepo.create({
-      date: "16.1.2023.",
+      date: "1.2.2023.",
       appointmentNumber: 2,
       patient: patient2,
       therapist: therapist1,
@@ -361,7 +385,7 @@ export class AppService {
     await this.scheduleRepo.save(schedule3);
 
     const schedule4: Schedule = this.scheduleRepo.create({
-      date: "16.1.2023.",
+      date: "1.2.2023.",
       appointmentNumber: 3,
       patient: patient3,
       therapist: therapist1,
@@ -369,7 +393,7 @@ export class AppService {
     await this.scheduleRepo.save(schedule4);
 
     const schedule5: Schedule = this.scheduleRepo.create({
-      date: "16.1.2023.",
+      date: "1.2.2023.",
       appointmentNumber: 4,
       patient: patient3,
       therapist: therapist1,
@@ -377,7 +401,7 @@ export class AppService {
     await this.scheduleRepo.save(schedule5);
 
     const schedule6: Schedule = this.scheduleRepo.create({
-      date: "16.1.2023.",
+      date: "1.2.2023.",
       appointmentNumber: 5,
       patient: patient3,
       therapist: therapist1,
@@ -385,7 +409,7 @@ export class AppService {
     await this.scheduleRepo.save(schedule6);
 
     const schedule7: Schedule = this.scheduleRepo.create({
-      date: "16.1.2023.",
+      date: "1.2.2023.",
       appointmentNumber: 6,
       patient: patient3,
       therapist: therapist1,
@@ -393,7 +417,7 @@ export class AppService {
     await this.scheduleRepo.save(schedule7);
 
     const schedule8: Schedule = this.scheduleRepo.create({
-      date: "17.1.2023.",
+      date: "2.2.2023.",
       appointmentNumber: 4,
       patient: patient1,
       therapist: therapist1,
@@ -401,7 +425,7 @@ export class AppService {
     await this.scheduleRepo.save(schedule8);
 
     const schedule9: Schedule = this.scheduleRepo.create({
-      date: "17.1.2023.",
+      date: "2.2.2023.",
       appointmentNumber: 5,
       patient: patient2,
       therapist: therapist1,
