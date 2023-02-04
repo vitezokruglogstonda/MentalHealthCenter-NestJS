@@ -24,6 +24,10 @@ import { RedisClient } from 'redis';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 // import { REDIS, RedisModule } from './redis';
+import { TherapistModule } from './modules/therapist/therapist.module';
+import { PatientModule } from './modules/patient/patient.module';
+import { AdminModule } from './modules/admin/admin.module';
+import { OperatorModule } from './modules/operator/operator.module';
 
 @Module({
   imports: [
@@ -40,9 +44,13 @@ import { join } from 'path';
     UserModule,
     AuthModule,
     RedisModule,
+    TherapistModule,
+    PatientModule,
+    AdminModule,
+    OperatorModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService]
 })
 export class AppModule implements NestModule {
   //const pubClient: = createClient({ url: `redis://<path to redis>:6379` });

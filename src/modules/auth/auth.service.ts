@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { User } from 'src/entities/user.entity';
 import { UserService } from '../user/user.service';
-import { compare, hash } from 'bcrypt';
+import { compare, hash } from 'bcryptjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable()
@@ -10,7 +10,7 @@ export class AuthService {
     public bcrypt;
 
     constructor(private userService: UserService){
-        this.bcrypt = require("bcrypt");
+        this.bcrypt = require("bcryptjs");
     }
 
     async validateUser(userEmail: string, userPassword: string): Promise<User | null>{

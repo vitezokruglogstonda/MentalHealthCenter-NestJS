@@ -3,10 +3,14 @@ import { AppService } from './app.service';
 import { Page } from './entities/page.entity';
 import { HelpCallDto } from './models/help-call.model';
 import { QuoteDto } from './models/quote.model';
+import { OperatorService } from './modules/operator/operator.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(
+    private readonly appService: AppService,
+    //private readonly operatorService: OperatorService
+    ) {}
 
   @Get()
   getHello(): string {
@@ -29,8 +33,8 @@ export class AppController {
     return await this.appService.getQuotes();
   }
 
-  @Post("help-call-request")
-  async requestHelpCall(@Body() request: HelpCallDto): Promise<boolean>{
-    return await this.appService.requestHelpCall(request);
-  }
+  // @Post("help-call-request")
+  // async requestHelpCall(@Body() request: HelpCallDto): Promise<boolean>{
+  //   return await this.operatorService.requestHelpCall(request);
+  // }
 }
