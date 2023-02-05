@@ -9,7 +9,8 @@ import { REDIS } from './redis.constants';
             provide: REDIS,
             useValue: Redis.createClient({
                 port: 6379,
-                host: "redis" //localhost
+                host: "redis"
+                //host: "localhost"
             }),
         },
     ],

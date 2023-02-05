@@ -40,7 +40,7 @@ export class TherapistService {
                 gender: patient.gender,
                 phoneNumber: patient.phoneNumber,
                 profilePicturePath: environment.server_own_url + environment.user_path_to_profile_picture + patient.profilePicturePath,
-                note: patient.note.noteText
+                note: patient.note ?  patient.note.noteText : ""
             }
             return_list.push(patientDto);
         })
@@ -72,12 +72,24 @@ export class TherapistService {
     }
 
     async updatePatientNote(patientId: number, note: string): Promise<PatientDto> {
-        let noteObj: Note = await this.noteRepo.createQueryBuilder("note")
+        let noteObj: Note;
+        noteObj = await this.noteRepo.createQueryBuilder("note")
             .leftJoinAndSelect("note.patient", "patient")
             .where("note.patient.id = :patientId", { patientId: patientId })
             .getOne();
 
-        noteObj.noteText = note;
+        if(noteObj){
+            noteObj.noteText = note;
+        }else{
+            let patient: User = await this.userRepo.createQueryBuilder("user")
+                .where("user.id = :id", {id: patientId})
+                .getOne();
+            noteObj = await this.noteRepo.create({
+                noteText: note,
+                patient: patient
+            })
+        }
+        
         await this.noteRepo.save(noteObj);
 
         let patient: User = await this.userRepo.createQueryBuilder("user")
