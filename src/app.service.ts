@@ -71,7 +71,7 @@ export class AppService {
     hashed_password = await this.bcrypt.hash(original_password, this.saltRounds);
 
     const callOperator: User = this.userRepo.create({
-      email: "oliver@google.com",
+      email: "oliver@gmail.com",
       online: false,
       firstName: "Oliver",
       lastName: "Brown",
@@ -125,7 +125,7 @@ export class AppService {
     hashed_password = await this.bcrypt.hash(original_password, this.saltRounds);
 
     const patient1: User = this.userRepo.create({
-      email: "theodore@google.com",
+      email: "theodore@gmail.com",
       online: false,
       firstName: "Theodore",
       lastName: "Williams",
@@ -339,7 +339,7 @@ export class AppService {
     hashed_password = await this.bcrypt.hash(original_password, this.saltRounds);
 
     const callOperator2: User = this.userRepo.create({
-      email: "mia@google.com",
+      email: "mia@gmail.com",
       online: false,
       firstName: "Mia",
       lastName: "Reed",
